@@ -64,8 +64,13 @@ export class Carrito {
     return Math.round(this.baseGravable() * IVA);
   }
 
+  envio() {
+    if (this.cantidadDeItems() === 0) return 0;
+    return this.baseGravable() >= 150000 ? 0 : 12000;
+  }
+
   total() {
-    return this.baseGravable() + this.iva();
+    return this.baseGravable() + this.iva() + this.envio();
   }
 
   resumen() {

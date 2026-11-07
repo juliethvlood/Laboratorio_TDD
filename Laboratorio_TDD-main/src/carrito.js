@@ -60,10 +60,11 @@ export class Carrito {
   }
 
   aplicarCupon(codigo) {
-    if (!(codigo in CUPONES)) {
+    const normalizado = String(codigo).trim().toUpperCase();
+    if (!Object.hasOwn(CUPONES, normalizado)) {
       throw new Error(`El cupón "${codigo}" no es válido`);
     }
-    this.cupon = codigo;
+    this.cupon = normalizado;
   }
 
   descuento() {

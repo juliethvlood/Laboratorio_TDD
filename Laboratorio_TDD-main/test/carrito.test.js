@@ -184,4 +184,18 @@ describe('Carrito de compras', () => {
       assert.throws(() => carrito.actualizarCantidad('Monitor', 1), /no está en el carrito/);
     });
   });
+
+  describe('Reto D: cupones sin distinguir mayúsculas', () => {
+    test('acepta el cupón en minúsculas', () => {
+      carrito.agregar('Teclado', 200000, 1);
+      carrito.aplicarCupon('desc10');
+      assert.equal(carrito.descuento(), 20000);
+    });
+
+    test('acepta el cupón con espacios alrededor', () => {
+      carrito.agregar('Teclado', 200000, 1);
+      carrito.aplicarCupon(' DESC20 ');
+      assert.equal(carrito.descuento(), 40000);
+    });
+  });
 });

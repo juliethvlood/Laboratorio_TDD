@@ -1,0 +1,12 @@
+# IDE
+.idea/
+
+# Dependencias
+node_modules/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

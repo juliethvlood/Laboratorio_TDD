@@ -198,4 +198,21 @@ describe('Carrito de compras', () => {
       assert.equal(carrito.descuento(), 40000);
     });
   });
+
+  describe('Reto E: cupón de valor fijo', () => {
+    test('el cupón MENOS30K resta 30000 del subtotal', () => {
+      carrito.agregar('Teclado', 100000, 1);
+      carrito.aplicarCupon('MENOS30K');
+      assert.equal(carrito.descuento(), 30000);
+      assert.equal(carrito.baseGravable(), 70000);
+    });
+
+    test('el descuento no deja la base gravable en negativo', () => {
+      carrito.agregar('Mouse', 20000, 1);
+      carrito.aplicarCupon('MENOS30K');
+      assert.equal(carrito.descuento(), 20000);
+      assert.equal(carrito.baseGravable(), 0);
+      assert.equal(carrito.total(), 12000);
+    });
+  });
 });
